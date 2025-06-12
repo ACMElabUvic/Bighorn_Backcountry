@@ -1,12 +1,8 @@
 # Bighorn Backcountry
-
-according to lauras thesis - 83 functional sites for detecting wildlife from oct 2019 - sept 2020, but then a different array of 39 sites used to capture range of vehicle activity. These shouldn't be used for wildlife occurrence then??
-
-# Richardson Wildfire Project
 This repository contains data, R scripts and associated outputs, and other materials necessary for the Applied Conservation and Macro Ecology (ACME) laboratory's research program with the Bighorn Backcountry Project. 
 The Bighorn Project seeks to understand how anthropogenic footprint and human activity affects mammal communities in this amazing wilderness in Alberta’s Rocky Mountains. This multi-use landscape houses a nearly intact large mammal community and is also home to important resource extraction and a key recreation area for areas of Edmonton and Calgary. Conserving its mammal biodiversity require informed management decisions. 
 
-Of **key** importance here. The Bighorn project was comprised of two camera arrays. The first, was a deployment of 93 cameras designed to sample wildlife, which resulted in 83 cameras of useable data. The second array was designed explicitly for examining recreational vehicle use and was deployed under a different design. I (Barnas) have decided to only include the first array of data in this repository, as this more strongly aligns with our goals of sampling wildlife. The second array could be used for wildlife sampling but would require special considerations depending on the project. For further details and access to this data, contact myself or any other individuals listed here. 
+Of **key** importance here. The Bighorn project was comprised of two camera arrays. The first, was a deployment of 93 cameras designed to sample wildlife, which resulted in 83 cameras of useable data. The second array was designed explicitly for examining recreational vehicle use and was deployed under a different design. I (Barnas) have decided to only include the first array of data in this repository, as this more strongly aligns with our goals of sampling wildlife. The second array could be used for wildlife sampling but would require special considerations depending on the project. For further details and access to this data, contact myself or any other individuals listed here. The array here ran from October 2019 to September 2020.
 
 The data provided here were previously cleaned and processed by Laura Eliuk. All the heavy lifting was done by her, my only role really was to format this for github.
 <hr>
@@ -15,7 +11,7 @@ The data provided here were previously cleaned and processed by Laura Eliuk. All
 
 **Project Information**   
 Details for the Bighorn Backcountry research program [here](http://www.acmelab.ca/bighorn.html).
-Further details for the Richardson WILDCAM progam page [here](https://wildcams.ca/projects/bighorn-backcountry-project/).
+Further details for the Bighorn WILDCAM progam page [here](https://wildcams.ca/projects/bighorn-backcountry-project/).
 
 Also visit the [ACME website](http://www.acmelab.ca) more information about the ACME lab.
 
@@ -28,24 +24,17 @@ Also visit the [ACME website](http://www.acmelab.ca) more information about the 
 
  **Author Information (project management and data):**  
  Principal Investigator Contact Information  
- Name: Cole A. Burton, PhD   
- Institution: University of British Columbia 
- Address: Forest Sciences Centre 2038, 2424 Main Mall, Vancouver, BC V6T 1Z4
- Email: [cole.burton@ubc.ca](cole.burton@ubc.ca ) 
-
-**Author Information (code):**  
- Data Analysis Contact Information  
- Name: Aidan Brushett  
- Institution: University of Victoria  
+ Name: Laura Eliuk, MSc 
+ Institution: University of Victoria
  Address: 3800 Finnerty Rd, Victoria, BC V8P 5C2  
- Email: [aidanbrushett@uvic.ca](mailto:aidanbrushett@uvic.ca) 
+ Email: [lauraeliuk@gmail.com](mailto:lauraeliuk@gmail.com) 
 
  **Author Information (code):**  
  Data Analysis Contact Information  
  Name: Andrew Barnas, PhD   
  Institution: University of Victoria  
  Address: 3800 Finnerty Rd, Victoria, BC V8P 5C2  
- Email: [andrew.f.barnas@gmail.com](mailto:andrew.f.barnas@gmail.com) 
+ Email: [andrewbarnas@uvic.ca](mailto:andrewbarnas@uvic.ca) 
 
  ### DATA & FILE OVERVIEW
 The following steps combine efforts by Dr. Gonçalo Curveira-Santos who assembled the raw data from the Richardson array (richardson_raw_data) and additional processing steps from Aidan Brushett (cleaned_richardson_data). Some of the files in these are redundant or not needed, or need further processing to create the standard outputs for the ACME github which are detailed in 1. Data Prep.RMD
