@@ -22,12 +22,12 @@ Also visit the [ACME website](http://www.acmelab.ca) more information about the 
  Address: 3800 Finnerty Rd, Victoria, BC V8P 5C2  
  Email: [fisherj@uvic.ca](mailto:fisherj@uvic.ca) 
 
- **Author Information (project management and data):**  
- Principal Investigator Contact Information  
- Name: Laura Eliuk, MSc 
- Institution: University of Victoria
+ **Author Information (project and data management):**  
+ Data Analysis Contact Information  
+ Name: Andrew Barnas, PhD   
+ Institution: University of Victoria  
  Address: 3800 Finnerty Rd, Victoria, BC V8P 5C2  
- Email: [lauraeliuk@gmail.com](mailto:lauraeliuk@gmail.com) 
+ Email: [andrewbarnas@uvic.ca](mailto:andrewbarnas@uvic.ca) 
 
  **Author Information (code):**  
  Data Analysis Contact Information  
