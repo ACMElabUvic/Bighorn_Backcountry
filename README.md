@@ -12,8 +12,8 @@ Note that because this was a collaborative project, data and code has changed ha
 ### GENERAL INFORMATION
 
 **Project Information**   
-Details for the Richardson Wildfire research program [here](http://www.acmelab.ca/richardson.html).
-Further details for the Richardson WILDCAM progam page [here](https://wildcams.ca/projects/richardson-project/).
+Details for the Bighorn Backcountry research program [here](http://www.acmelab.ca/bighorn.html).
+Further details for the Richardson WILDCAM progam page [here](https://wildcams.ca/projects/bighorn-backcountry-project/).
 
 Also visit the [ACME website](http://www.acmelab.ca) more information about the ACME lab.
 
