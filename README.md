@@ -24,10 +24,10 @@ Also visit the [ACME website](http://www.acmelab.ca) more information about the 
 
  **Author Information (project and data management):**  
  Data Analysis Contact Information  
- Name: Andrew Barnas, PhD   
+ Name: Laura Eliuk, MSc   
  Institution: University of Victoria  
  Address: 3800 Finnerty Rd, Victoria, BC V8P 5C2  
- Email: [andrewbarnas@uvic.ca](mailto:andrewbarnas@uvic.ca) 
+ Email: [lauraeliuk@gmail.com](mailto:lauraeliuk@gmail.com) 
 
  **Author Information (code):**  
  Data Analysis Contact Information  
