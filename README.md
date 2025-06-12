@@ -37,36 +37,30 @@ Also visit the [ACME website](http://www.acmelab.ca) more information about the 
  Email: [andrewbarnas@uvic.ca](mailto:andrewbarnas@uvic.ca) 
 
  ### DATA & FILE OVERVIEW
-The following steps combine efforts by Dr. Gonçalo Curveira-Santos who assembled the raw data from the Richardson array (richardson_raw_data) and additional processing steps from Aidan Brushett (cleaned_richardson_data). Some of the files in these are redundant or not needed, or need further processing to create the standard outputs for the ACME github which are detailed in 1. Data Prep.RMD
+The following steps use previously cleaned data by Laura Eliuk that have been quality controlled and checked. These files were used to create the standardized outputs listed below. 
 
-*Richardson.Rproj*: The R project which houses all this data and analysis
+*Bighorn_Backcountry.Rproj*: The R project which houses all this data and analysis
 
 *1. Data Prep.Rmd*: The R markdown file that does all the work of producing outputs
 
 **inputs**
-
-This folder contains both summarized and raw(ish) data products (e.g. previously processed data) used to produce key products in the outputs folder. I am providing the whole folder for transparency, even though some redundant products (Wildtrax) appear in here. 
-These files are partially processed data provided by Dr. Cole Burton on behalf of Dr. Gonçalo Curveira-Santos, and some made by Aidan Brushett 
+This folder contains cleaned and summarised data products by Laura Eliuk (seriously, she is a beacon of hope for how students should leave their project datafiles in order) containing the raw detection files, camera operability, and the camera deployment data. 
 
 *Files*
-1) Richardson_daily_effort_lookup.csv: A file of daily camera operability for each camera for each year. Note I provide a slightly different format in the outputs folder. 
-2) Richardson_Deployment_Data_2018_2019_2020.csv: a file of deployment data featuring start and stop dates based on camera operability or visibility for each camera in the Richardson array
-3) Richardson_Deployment_Site_data.csv: A file of deployment timing and location information 
-4) Richardson_Detection_Data_2018_2019_2020.csv: a large file that appears to be the amalgamated timelapse files for all cameras in the Richardson array
-5) Richardson_Wildtrax_Detection_Data_2019_2020.csv: a file of detection data from the additional Richardson Wildtrax project. 
-6) Richardson_Wildtrax_Detection_Data_2020_2021.csv: a file of detection data from the additional Richardson Wildtrax project.
+1) BH.detections.raw.csv: a file of timelapse files featuring detection data from 83 cameras.
+2) bh.landcover.all.csv: a file of landscape covariates for each camera site extracted at various buffer sizes for each site.
+3) BH_deployment_clean.csv: a file of deployment data for each camera detailing when and where the camera was operating. 
    
 
 **outputs**
-This folder contains three key data products needed to move forward with additional analyses; 1) a summary of independent detections of wildlife species at each camera site to the standard 30 minute threshold, 2) the GPS locations of individual camera sites, 3) covariates associated with each camera site extracted across multiple radius buffers (details below), 4) the raw detection file containing all the image information, should anyone want to calculate their own threshold or produce a different type of response variable.
+This folder contains four key data products needed to move forward with additional analyses; 1) a summary of independent detections of wildlife species at each camera site to the standard 30 minute threshold, 2) the GPS locations of individual camera sites along wiht their own operability, 3) covariates associated with each camera site extracted across multiple radius buffers (details below), 4) the raw detection file containing all the image information, should anyone want to calculate their own threshold or produce a different type of response variable.
 *See details on files below*
 
 **relevant literature**  
-This folder provides pdf copies of previously published papers using the Willmore Wilderness remote camera dataset. The purpose of this folder is to provide background/information on previously published work using this dataset. Note that sample numbers may vary between individual manuscripts due to specifics of individual projects, as well as the multiple deployment designs within the Willmore dataset.
+This folder provides pdf copies of previously published papers using the Bighorn Backcountry remote camera dataset. The purpose of this folder is to provide background/information on previously published work using this dataset. Note that sample numbers may vary between individual manuscripts due to specifics of individual projects. E.g. the use of all cameras vs the subsetted 93/83 cameras
  * Barnas et al. 2024 How landscape traits affect boreal mammal responses to anthropogenic disturbance.
- * Burton et al. 2022 Behavioural bycatch from camera trap surveys yields insights on prey responses to human-mediated predation risk
- * Curveria-Santos 2024. Disturbance-mediated changes to boreal mammal spatial networks in industrializing landscapes
- * Sun et al. 2022 A cautionary tal comparing spatial count and partial identity models for estimating densities of threatened and unmarked populations
+ * Laura Eliuk MSc Thesis 2023 - The relative impact of recreational activity and landscape protection on a Rocky Mountain Mammal community
+ * Khan et al 2023 Shifts in diel activity of Rocky Mountain mammal communiities in response to anthropogenic disturbance and sympatric invasive white-tailed deer
 <hr>
 
 ### **DETAILS ON OUTPUTS** 
