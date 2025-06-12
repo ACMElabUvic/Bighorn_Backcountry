@@ -44,6 +44,7 @@ The following steps use previously cleaned data by Laura Eliuk that have been qu
 *1. Data Prep.Rmd*: The R markdown file that does all the work of producing outputs
 
 **inputs**
+
 This folder contains cleaned and summarised data products by Laura Eliuk (seriously, she is a beacon of hope for how students should leave their project datafiles in order) containing the raw detection files, camera operability, and the camera deployment data. 
 
 *Files*
@@ -53,10 +54,12 @@ This folder contains cleaned and summarised data products by Laura Eliuk (seriou
    
 
 **outputs**
+
 This folder contains four key data products needed to move forward with additional analyses; 1) a summary of independent detections of wildlife species at each camera site to the standard 30 minute threshold, 2) the GPS locations of individual camera sites along wiht their own operability, 3) covariates associated with each camera site extracted across multiple radius buffers (details below), 4) the raw detection file containing all the image information, should anyone want to calculate their own threshold or produce a different type of response variable.
 *See details on files below*
 
 **relevant literature**  
+
 This folder provides pdf copies of previously published papers using the Bighorn Backcountry remote camera dataset. The purpose of this folder is to provide background/information on previously published work using this dataset. Note that sample numbers may vary between individual manuscripts due to specifics of individual projects. E.g. the use of all cameras vs the subsetted 93/83 cameras
  * Barnas et al. 2024 How landscape traits affect boreal mammal responses to anthropogenic disturbance.
  * Laura Eliuk MSc Thesis 2023 - The relative impact of recreational activity and landscape protection on a Rocky Mountain Mammal community
