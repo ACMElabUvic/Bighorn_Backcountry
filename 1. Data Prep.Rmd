@@ -1,0 +1,205 @@
+The purpose of this script is to organize and clean up the Bighorn dataset. Huge credit to Laura Eliuk for leaving this project in such great shape. 
+
+Main outputs we want
+1. List of raw detections
+2. List of independent detections to 30 minutes threshold
+3. Camera deployment file
+4. Site covariate file
+
+Andrew Barnas 
+June 12th 2025
+andrew.f.barnas@gmail.com
+
+Load in packages we will need, setup working directories, and load in files. I think this should be fairly straightforward since Laura left this really well organized. 
+```{r}
+#Clear everything out and start fresh
+rm(list=ls())
+
+library(tidyr)        # data tidying
+library(stringr)      # working with strings
+library(dplyr)        # data manipulation
+library(reproducible) # reproducible working directories
+library(ggplot2)      # plots
+library(ggpubr)       # combining plots
+library(lubridate)   # dates
+
+
+#Setup input and output paths
+input_directory <- checkPath(file.path(getwd(), "inputs"), 
+                            create = TRUE)
+
+output_directory <- checkPath(file.path(getwd(), "outputs"), 
+                             create = TRUE)
+
+
+#Read in the detection file
+dets<-read.csv(file.path(input_directory, "BH.detections.raw.csv"), header = TRUE)
+
+#Read in the covariate file
+covs<-read.csv(file.path(input_directory, "bh.landcover.all.csv"), header = TRUE)
+
+#Read in the deployment file
+camop<-read.csv(file.path(input_directory, "BH_deployment_clean.csv"), header = TRUE)
+
+
+
+```
+
+Ok lets do our initial checking. Now Lauras thesis states there were 93 cameras deployed but only 83 functional sites. 
+```{r}
+
+#What do we have in the deteciton file? Looks like pretty standard timelapse files
+colnames(dets)
+
+#Bless you laura, there are 83 sites.
+n_distinct(dets$Site)
+
+
+#Ok now what about the covariates file? 92, but maybe that was before filting and stuff
+n_distinct(covs$Site)
+#Are all the sites in the detection file in the covariates file?
+
+unique(dets$Site)
+unique(covs$Site)
+
+#Nice, looks like everyone is accounted for so thats sicks
+dets%>%
+  filter(!Site %in% unique(covs$Site))
+
+#What about deployment? Do we have 83 sites? No 93, but again who cares we have data for all
+n_distinct(camop$Deployment.Location.ID)
+unique(camop$Deployment.Location.ID)
+dets%>%
+  filter(!Site %in% unique(camop$Deployment.Location.ID))
+
+
+
+```
+
+Alright well...I guess lets get these all on the same page
+```{r}
+#First some simple renaming 
+dets<-dets%>%rename(site = Site)
+covs<-covs%>%rename(site = Site)
+camop<-camop%>%rename(site = Deployment.Location.ID)
+
+#And now lets filter the covariate and camop dataframe to only have those 83 sites
+camop<-camop%>%
+  filter(site %in% unique(dets$site))
+
+covs<-covs%>%
+  filter(site %in% unique(dets$site))
+
+```
+
+Formating the camop file
+```{r}
+camop<-camop%>%
+  select(site,
+         Latitude,
+         Longitude,
+         start_date = Camera.Deployment.Begin.Date,
+         end_date = Camera.Deployment.End.Date)
+
+#Quick ganntt chart to see if it makes sense. A few weird cameras starting in spring 2020, but I guess not out of the ordinary?
+camop%>%
+  mutate(start_date = mdy(start_date),
+         end_date = dmy(end_date))%>%
+   ggplot(aes(y = site))+
+  geom_segment(aes(x = start_date, xend = end_date, y = site, yend = site))
+
+
+#And i guess thats it, lets write the file
+write.csv(camop, file.path(output_directory, "bighorn_camop.csv"), row.names = FALSE)
+
+```
+
+Formatting the detection files. The purpose here is to present the raw detection data, and then the standard 30 minute independent detection file.
+```{r}
+#Cleaning up the detection file here slightly
+dets<-dets%>%
+  select(site, 
+         datetime = Date.Time,
+         species = Species)
+
+#Alright curious what we have in here
+dets%>%
+  group_by(species)%>%
+  summarise(n())
+
+#Ok so there are obviously some classification issues here sort of. Like snowmobiler vs human, a bunch of unknown misc species
+unique(dets$species)
+
+#So here is the strategy. I am just going to output this as the raw detection file because thats what it is. 
+write.csv(dets, file.path(output_directory, "bighorn_detections_raw.csv"), row.names = FALSE)
+
+
+#But then do a bit of cleaning up for the 30 minute detection file. I will remove the empty images, and all "unknown" species. I think that is a fair approach. If anyone wants to get more specific, they can do it themselves with the raw data!
+dets<-dets%>%
+  #Remove blanks
+  filter(species != "")%>%
+  #Get rid of all those unknown species
+  filter(!str_detect(species, 'Unknown'))%>%
+  #There is also an "Other birds"....which is basically unknown
+  filter(!str_detect(species, 'Other'))
+  
+#That worked nicely
+unique(dets$species)
+#Nice, still have 83 sites
+n_distinct(dets$site)
+
+
+#Ok lets run the independent deteciton loop
+dets<-dets%>%
+  arrange(site, species, datetime)%>%
+  group_by(site, species)%>%
+  mutate(timediff = as.numeric(difftime(datetime, lag(datetime),
+                                        units = "mins")))
+
+#This is our rolling window for "independence": we will count windows as independent if they are more than "mins" apart. Here we are using 30 minutes. 
+
+mins<-30
+
+#This loop assigns group ID based on independence. 
+ dets$Event.ID <- 9999
+ seq <- as.numeric(paste0(nrow(dets),0))
+ seq <- round(seq,-(nchar(seq)))
+ for (i in 2:nrow(dets)) {
+   dets$Event.ID[i-1]  <- paste0("E",format(seq, scientific = F))
+   if(is.na(dets$timediff[i]) | abs(dets$timediff[i]) > (mins)){
+     seq <- seq + 1
+   }
+ }
+ 
+ if(dets$timediff[nrow(dets)] < (mins)|
+    is.na(dets$timediff[nrow(dets)])){
+   dets$Event.ID[nrow(dets)] <- dets$Event.ID[nrow(dets)-1]
+ } else{dets$Event.ID[nrow(dets)] <- paste0("E",format(seq+1, scientific = F))
+ }
+ 
+   #And then take only the first row of data for each independent event
+dets_independent<-dets%>%
+   group_by(Event.ID)%>%
+   slice(1)%>%
+  arrange(site, species)
+
+#And write the independent detection file
+write.csv(dets_independent, file.path(output_directory, "bighorn_30min_independent_detections.csv"),
+          row.names = FALSE)
+
+```
+
+The only thing that needs to be done to the covariate file is remove one silly column
+```{r}
+covs<-covs%>%
+  select(-Array)
+
+#Write the covariate file
+write.csv(covs, file.path(output_directory, "bighorn_covariates.csv"),
+          row.names = FALSE)
+
+```
+
+
+
+Fin.
