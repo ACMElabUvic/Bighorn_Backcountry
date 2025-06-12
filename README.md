@@ -25,7 +25,7 @@ Also visit the [ACME website](http://www.acmelab.ca) more information about the 
  **Author Information (project management and data):**  
  Principal Investigator Contact Information  
  Name: Laura Eliuk, MSc 
- Institution: University of Victoria
+ Institution: University of Victoria  
  Address: 3800 Finnerty Rd, Victoria, BC V8P 5C2  
  Email: [lauraeliuk@gmail.com](mailto:lauraeliuk@gmail.com) 
 
