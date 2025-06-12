@@ -67,101 +67,54 @@ This folder provides pdf copies of previously published papers using the Bighorn
 <hr>
 
 ### **DETAILS ON OUTPUTS** 
-### Data specific information for : [outputs/richardson_camop.csv]  
-One thing to note for the camera operability file, whoever made this and was quite diligent with removing periods of obscurity (e.g. snow cover). I have removed the comments column from this because its large and unweildly, but should someone want to go in and see the specific reason for gaps in camera operation, see the original file Richardson_Deployment_Data_2018_2019_2020.csv
-* **Number of variables/columns:** 7
-* **Number of observations/rows:** 273 (multiple rows per camera sites due to multiple checks and periods of camera obscurity) 
+### Data specific information for : [outputs/bighorn_camop.csv]  
+
+* **Number of variables/columns:** 5
+* **Number of observations/rows:** 83 (one per camera) 
 
 **Variable List:**
 * **site** : camera site ID
-* **lat** : camera site latitidue 
-* **long** : camera site longitutde
-* **easting_12n** : camera site Easting location
-* **northing_12n** : camera site Northing location
+* **latitude** : camera site latitidue 
+* **longitude** : camera site longitutde
 * **start_date** : first day of camera operation as recorded by notes on camera start dates for that check
 * **end_date** : last day of camera operation as recorded by camera visability and camera checks
 
-### Data specific information for : [outputs/richardson_detections_raw.csv]  
-
-* **Number of variables/columns:** 11
+### Data specific information for : [outputs/bighorn_detections_raw.csv]  
+Note this is slimmed down, I have removed much of the default timelapse columns as they are generally not useful. If you want the extra details on group counts and whatnot, track them down from the inputs folder
+* **Number of variables/columns:** 3
 * **Number of observations/rows:** 634778 (one row for each image at each site) 
 
 **Variable List:**
-* **array**: the array this took place in (obviously richardson)
-* **camera**: I don't know maybe a camera unit number? We have a seperate column for site ID
 * **site** : camera site ID
-* **species** : the species in the independent detection. Note this still contains "Unknowns" and will need to be filtered/cleaned before any analysis.
 * **datetime** : the datetime (year-month-day hour:minute:second) of the image 
-* **image_total** : Looks to be a total of how many "things" (wildlife)? Were in the image, E.g. 2 for two bears in the same image, 0 for an empty image
-* **group_total** : Guessing this is a summary of how many individuals were in the same sequence of images. E.g. one bear passess by but then another bear walks by, but clearly a different bear. This is a group of 2?
-* **age_class** : looks like a categorization for adult, young of the year, juvenile etc. Not sure how accurate, recommend tracking down project leads for how this was done and which species it would be good for
-* **sex** : male or female, also not sure how reliable and for which species. Contact PIs
-* **image_comments**: Any comments from the taggers on the image itself
-* **tag_comments**: Any comments from the taggers on the tag? Not sure how this differs from above. 
+* **species** : the species in the image. Note this still contains "Unknowns" and will need to be filtered/cleaned before any analysis.
 
 
-### Data specific information for : [outputs/richardson_30min_independent_detections.csv]  
 
-* **Number of variables/columns:** 8
+### Data specific information for : [outputs/bighorn_30min_independent_detections.csv]  
+
+* **Number of variables/columns:** 5
 * **Number of observations/rows:** 5940 (one row for each independent detection of a species at each site) 
 
 **Variable List:**
-* **array**: the array this took place in (obviously richardson)
-* **camera**: I don't know maybe a camera unit number? We have a seperate column for site ID
-* **Site** : camera site ID
+* **site** : camera site ID
+* **datetime** : the datetime (year-month-day hour:minute:second) of the image 
 * **species** : the species in the independent detection. Note this still contains "Unknowns" and will need to be filtered/cleaned before any analysis.
-* **event_start** : the datetime (year-month-day hour:minute:second) of the first camera image of each independent detection. 
-* **event_end** : the datetime (year-month-day hour:minute:second) of the last camera image of each independent detection. 
-* **year** : the year the independent detection took place
-* **month** : the month the independent detection took place. 
+* **timediff** : the time difference between subsequent detections for the same species at the same site 
+* **Event.ID** : individual identifier for each detection
 
-### Data specific information for: [outputs/richardson_covariates_formatted_grouped.csv]
+### Data specific information for: [outputs/bighorn_covariates.csv]
 
--   **Number of variables:** 42
--   **Number of cases/rows:** 1276
+* **Number of variables:** 49
+* **Number of cases/rows:** 1680
 
 **Variable List:**
 
--   **array;** a factor with 10 levels describing the landscape unit (eg., LU01)
--   **site;** a factor with 430 levels where the first element abbreviation describes the landscape unit and the second element describes the camera site.
--   **array_year;** a factor with 3 levels that describes the year the camera was deployed
--   **lat;** latitude of the camera location in decimal degrees (WGS84)
--   **long;** longitude of the camera location in decimal degrees (WGS84)
--   **easting_12N;** easting coordinate of the camera site(NAD 83 UTM Zone 12N)
--   **northing_12N;** northing coordinate of the camera site(NAD 83 UTM Zone 12N)
--   **buffer_dist;** a numeric measurement in meters ranging from 50 - 5000, of the buffer radius around the camera for which the proportion of all variables were calculated.
--   **harvest_0\_15;** a numeric variable indicating the proportion of the buffer area comprised of
--   of harvest areas harvested within the past 15 years.
--   **harvest_gt_15;** a numeric variable indicating the proportion of the buffer area comprised of of harvest areas harvested over 15 years ago.
--   **harvest_total;** a numeric variable indicating the proportion of all harvest areas within the buffer area.
--   **osm_industrial;** a numeric measurement representing the proportion of various industrial features and clearings within the buffer. This includes, borrowpits (i.e., Borrowpit-dry, Borrowpit-wet, Borrowpits, Ris-borrowpits, Dugout, Lagoon, and Sump), clearings (i.e., Clearing-unknown, Clearing-wellpad-unconfirmed, Ris-clearing, Ris-clearing-unknown, and Runway), facilities (i.e., Camp-industrial, Facility-other, Facility-unknown, Mill, Misc-oil-gas-facility, Oil-gas-plant, Ris-camp-industrial, Ris-facility-operations, Ris-facility-unknown, Ris-plant, Ris-tank-farm, Ris-utilities, and Urban-industrial), and mines (i.e., Grvl-sand-pit, Mines-oilsands, Mines-pitlake, Open-pit-mine, Peat, Ris-drainage, Ris-mines-oilsands, Ris-oilsands-rms, Ris-overburden-dump, Ris-reclaim-ready, Ris-soil-salvaged, Ris-tailing-pond, Ris-waste, and Tailing-pond).
--   **pipe_trans;** a numeric measurement representing the proportion of pipelines and transmission lines within the buffer.
--   **railways;** a numeric variable indicating the proportion of single track railways within the buffer area. Single track railways are defined as, hard, steel rail lines designed for train use. Specifically, a road or track for trains, consisting of parallel steel rails, supported on wooden crossbeams. The single track consists of one parallel sets of tracks.
--   **roads**; a numeric measurement representing the proportion of roads within the buffer. Roads are defined as, non-vegetated, impermeable surfaces used for motorized vehicle or aircraft transportation or access and includes, Airp-runway, Interchange-ramp, Ris-airp-runway, Ris-road, Road-gravel-1L, Road-gravel-2L, Road-paved-1L, Road-paved-2L, Road-paved-3L, Road-paved-4L, Road-paved-5L, Road-paved-6L, Road-paved-7L, Road-paved-div, Road-paved-undiv-1L, Road-paved-undiv-2L, Road-unclassified, Road-unimproved, Road-unpaved-1L, Road-unpaved-2L, Road-winter, and Transfer station.
--   **seismic;** a numeric measurement representing the proportion of seismic lines and 3D seismic lines within the buffer.
--   **seismic_lines;** a numeric measurement representing the proportion of seismic lines within the buffer. Seismic lines are defined as, cleared corridors created during hydrocarbon exploration with a 3-meter buffer (6-meter total width), and were not grouped with any other variables.
--   **seismic_lines_3D;** a numeric measurement representing the proportion of 3D seismic lines (also called low-impact seismic lines) within the buffer. 3D seismic lines are defined as, cleared corridors created during hydrocarbon exploration with a 1.5-meter buffer (3-meter total width), and were not grouped with any other variables.
--   **trails;** a numeric measurement representing the proportion of trails within the buffer. Trails are defined as, cleared corridors surfaced with dirt or low vegetation for human/vehicle access, and include Trail, and Truck-trail.
--   **veg_edges;** a numeric measurement representing the proportion of vegetated edges within the buffer. Vegetated edges are defined as, disturbed vegetation alongside road edges, railway edges including ditches, and other industrial features, and include Vegetated-edge-railways, Vegetated-edge-roads, and Surrounding-veg.
--   **wells_active;** a numeric measurement representing the proportion of active wells within the buffer. Active wells are defined as, ground cleared for an oil/gas well pad where at least one well is currently active include, Well-bitumen, Well-cased, Well-cleared-not-confirmed, Well-cleared-not-drilled, Well-gas, Well-oil, Well-other, and Well-unknown.
--   **well_inactive;** a numeric measurement representing the proportion of inactive wells within the buffer. Inactive ells are defined as, ground cleared for an oil/gas well pad, where the well is currently abandoned.
--   **wells_total;** a numeric measurement representing the proportion of wells within the buffer. Wells are defined as, ground cleared for an oil/gas well pad, and include Well-abandoned, Well-bitumen, Well-cased, Well-cleared-not-confirmed, Well-cleared-not-drilled, Well-gas, Well-oil, Well-other, and Well-unknown.
--   **pct_betu_pap;** a numeric variable indicating the proportion of Betula papyrifera (White birch) within the buffer area.
--   **fire_0\_15;** a numeric variable indicating the proportion of burned area up to 15 years old within the buffer area.
--   **fire_gt_15;** a numeric variable indicating the proportion of burned area over 15 years ago within the buffer area.
--   **pct_lari_lar;** a numeric variable indicating the proportion of Larix laricina (Tamarack) within the buffer area.
--   **lc_broadleaf;** a numeric variable indicating the proportion of broadleaf forest within the buffer area.
--   **lc_conifer;** a numeric variable indicating the proportion of conifer forest within the buffer area.
--   l**c_herbs;** a numeric variable indicating the proportion of herb within the buffer area.
--   **lc_mixedwood;** a numeric variable indicating the proportion of mixedwood forest within the buffer area.
--   **lc_shrubs;** a numeric variable indicating the proportion of shrubs within the buffer area.
--   **lc_water;** a numeric variable indicating the proportion of water within the buffer area.
--   **lc_wetland;** a numeric variable indicating the proportion of wetland within the buffer area.
--   **lc_wetland_treed;** a numeric variable indicating the proportion of treed wetland within the buffer area.
--   **pct_pice_gla;** a numeric variable indicating the proportion of Larix laricina (White spruce) within the buffer area.
--   **pct_pice_mar;** a numeric variable indicating the proportion of Picea mariana (Black spruce) within the buffer area.
--   **pct_pinu_ban;** a numeric variable indicating the proportion of Pinus banksaina (Jack pine) within the buffer area.
--   **pct_popu_tre;** a numeric variable indicating the proportion of Populus tremuloides (Trembling aspen) within the buffer area.
+So at the risk of sounding lazy, there are a lot of variables here listed. Here is the relevant section from Laura's thesis on page 21: "To determine which landscape factors best supported the occurrence of wildlife species, I used three competing models with three corresponding sets of landscape covariates: an activity model, a linear disturbance model, and a natural landcover model (Tabled 2.3 and 2.4). Covariates were measured by building buffers (250m-2500m, in 250m increments) (Fisher et al., 2011) around wildlife cameras and extracting landcover variables within each buffer. For the activity model, I used the predicted peak activity on roads, cutlines, and ATV trails (Figure 2.4). For the linear disturbance features model, I obtained data on cutlines from ABMI’s 2017 Human Footprint Inventory (ABMI, 2017), and I obtained road and ATV trail data from Government of Alberta staff (Table 2.3). For the natural landscape features model, I used a Landsat dataset classified into habitat types (Nijland et al., 2015) (Table 2.3)."
+
+I would recommend users either:
+1) Read the relevant literature folder and the sources cited for these variables or
+2) Depending on the specificity needed, re-extract variables on your own. 
 
 ***
 
